@@ -42,9 +42,11 @@ This is deployed to Heroku with the trained model under `sentiment_model` direct
 `https://flask-ai-5fdcbdbfb317.herokuapp.com/`
 
 ### Issues faced
-> Needed to experiment with the parameters of the model to get a not an okay result.
-> Longer texts are not classified well.
-> Heroku slug limit of 500mb on deployment reached bacuse of tensorflow's size. Used tensorflow CPU for deployment.
+. Needed to experiment with the parameters of the model to get an okayish prediction score.
+
+. Longer texts are not classified well.
+
+. Heroku slug limit of 500mb on deployment reached bacuse of tensorflow's size. Used tensorflow CPU for deployment.
 
 ### Examples:
 

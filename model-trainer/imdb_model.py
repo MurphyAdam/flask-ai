@@ -131,7 +131,7 @@ model.compile(
 )
 
 # Train the Model
-epochs = 2
+epochs = 20 # I trained on 20 or 25
 history = model.fit(
     train_ds,
     validation_data=val_ds,
