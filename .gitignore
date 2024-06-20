@@ -1,0 +1,50 @@
+
+# Python cache
+__pycache__
+.pyc
+.cache/
+
+# .bashrc
+.bashrc
+# testing
+/coverage
+
+# venv
+venv
+
+# Distribution / packaging
+.Python
+build/
+**/build
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+lib/
+lib64/
+parts/
+*dist/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# instructions
+instructions.txt
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# server logs
+**/logs
+
+# .flaskenv
+.flaskenv
