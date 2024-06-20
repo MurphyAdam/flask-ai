@@ -73,3 +73,9 @@ This is deployed to Heroku with the trained model under `sentiment_model` direct
 [0.50000393]: Text: very bad, Sentiment: negative
 [0.67680097]: Text: mild, not good, not bad, Sentiment: positive
 ```
+
+### Model train
+To train the model on your machine, please cd into the directory `model-trainer` and install the requirments.txt.*1
+After that, run `python imdb_model.py`.
+
+1*: please notice this has an exhaustive list of the packages that you may not need exactly. 
