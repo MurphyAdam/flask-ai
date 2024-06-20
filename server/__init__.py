@@ -2,18 +2,8 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 from flask import Flask
-from config import Config, Development
+from config import Config
 
-def get_env_config():
-    # Retrieve environment-specific config class based on environment variables.
-    env = os.getenv('APP_ENV', os.getenv('FLASK_ENV'))
-    if env == 'dev':
-        return Development
-    elif env == 'prod':
-        return Config
-    raise EnvironmentError(
-        "No APP_ENV or FLASK_ENV is set! Please set one to 'dev' or 'prod'."
-    )
 
 def configure_logging(app):
     # Configure the app's logging.
@@ -43,7 +33,7 @@ def configure_logging(app):
 def create_app():
     # Construct the core application.
     app = Flask(__name__, instance_relative_config=False)
-    app.config.from_object(get_env_config())
+    app.config.from_object(Config)
 
     with app.app_context():
         # Register API blueprint
