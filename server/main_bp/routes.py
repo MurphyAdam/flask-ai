@@ -34,9 +34,11 @@ def predict():
     # Use the loaded model layer for inference
     prediction = model(text_tensor)
     # Extract the prediction value from the dictionary
-    prediction_value = prediction['activation_4'].numpy()[0][0]
+    print("fuck")
+    print(prediction)
+    prediction_value = prediction['activation_1'].numpy()[0][0]
     # Binary classification with a threshold of 0.7
-    sentiment = 'positive' if prediction_value >= 0.7 else 'negative'
+    sentiment = 'positive' if prediction_value >= 0.65 else 'negative'
     return jsonify({'text': text, 'sentiment': sentiment, 'weight': float(prediction_value)})
 
 
