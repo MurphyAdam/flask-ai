@@ -112,11 +112,13 @@ test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
 # Build the Model
 embedding_dim = 16
 model = tf.keras.Sequential([
-    layers.Embedding(max_features, embedding_dim),
-    layers.Dropout(0.2),
-    layers.GlobalAveragePooling1D(),
-    layers.Dropout(0.2),
-    layers.Dense(1, activation='sigmoid')
+    layers.Embedding(max_features, embedding_dim, input_length=sequence_length),
+    layers.SpatialDropout1D(0.2),  # Dropout layer after Embedding
+    layers.Bidirectional(layers.LSTM(64, return_sequences=True)),  # LSTM layer
+    layers.GlobalMaxPooling1D(),  # Global Max Pooling
+    layers.Dense(64, activation='relu'),  # Dense layer with ReLU activation
+    layers.Dropout(0.5),  # Dropout layer for regularization
+    layers.Dense(1, activation='sigmoid')  # Output layer with Sigmoid activation
 ])
 
 model.summary()
