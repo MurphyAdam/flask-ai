@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flaskai</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', 
+        filename='style.css', _external=True) }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Flask "AI"</h1>
+        <p>Simple app for sentiment analysis</p>
+
+        <section>
+            <h2>Analyze Sentiment:</h2>
+            <input type="text" id="text-input" placeholder="Enter text here...">
+            <button onclick="analyzeSentiment()">Analyze Sentiment</button>
+            <div id="result"></div>
+        </section>
+        <p>
+            <a href="https://github.com/MurphyAdam/flask-ai" 
+                alt="GitHub repository for flask AI">View on GitHub
+            </a>
+        </p>
+    </div>
+
+    <script>
+        function analyzeSentiment() {
+            const text = document.getElementById('text-input').value.trim();
+            const resultDiv = document.getElementById('result');
+            if (!text) {
+                resultDiv.innerHTML = `<p style="color:red;">Sorry, please enter some text</p>`;
+                return;
+            }
+            fetch('/api/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    resultDiv.innerHTML = `<p style="color:red;">Error: ${data.error}</p>`;
+                } else {
+                    resultDiv.innerHTML = `<p style="color:tail;">Sentiment: 
+                        ${data.sentiment}</p><p style="color:red;">Weight: 
+                        ${data.weight.toFixed(4)}</p>`;
+                }
+            })
+            .catch((error) => {
+                resultDiv.innerHTML = `<p style="color:red;">Error: Sorry, an 
+                    error occurred.</p>`;
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+
+</html>
